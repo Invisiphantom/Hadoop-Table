@@ -29,9 +29,11 @@ sudo mv hadoop/ /usr/local/hadoop
 sudo chown -R hadoop:hadoop /usr/local/hadoop
 
 # 配置环境变量
-vi ~/.bashrc && source ~/.bashrc
+code ~/.bashrc
+source ~/.bashrc
 
 alias dls="hdfs dfs -ls"
+alias dl="hdfs dfs -ls -C"
 alias drm="hdfs dfs -rm"
 alias dcat="hdfs dfs -cat"
 alias dput="hdfs dfs -put"
@@ -47,9 +49,15 @@ export PATH=HADOOP_HOME/sbin/:$PATH
 rm -f $HADOOP_HOME/bin/*.cmd
 rm -f $HADOOP_HOME/sbin/*.cmd
 
-vi $HADOOP_HOME/etc/hadoop/hadoop-env.sh
-vi $HADOOP_HOME/etc/hadoop/core-site.xml
-vi $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+code $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+code $HADOOP_HOME/etc/hadoop/core-site.xml
+code $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+
+
+code $HADOOP_HOME/etc/hadoop/log4j.properties
+hadoop.root.logger=WARN,console
+log4j.logger.org.apache.hadoop.util.NativeCodeLoader=ERROR
+
 
 # 初始化 HDFS
 hdfs namenode -format
